@@ -4,7 +4,7 @@ import { UserRole } from "./models/userRoles.enum";
 import { Post } from "./post.entity";
 
 @Entity({
-  name: "user",
+  name: "users",
 })
 export class User implements IUser {
   @PrimaryGeneratedColumn("uuid", { name: "id" })
@@ -17,7 +17,7 @@ export class User implements IUser {
   email: string;
 
   @Column({ type: "enum", enum: UserRole })
-  role: UserRole;
+  roles: UserRole;
 
   @Column({ name: "password_hash", type: "text" })
   passwordHash: string;
