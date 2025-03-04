@@ -3,7 +3,7 @@ import { IPost } from "./models/post.interface";
 import { User } from "./user.entity";
 
 @Entity({
-  name: "post",
+  name: "posts",
 })
 export class Post implements IPost {
   @PrimaryGeneratedColumn("uuid", { name: "id" })
