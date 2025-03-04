@@ -6,6 +6,6 @@ export interface IUser {
   name: string;
   email: string;
   passwordHash: string;
-  role: UserRole;
+  roles: UserRole;
   posts?: IPost[];
 }
