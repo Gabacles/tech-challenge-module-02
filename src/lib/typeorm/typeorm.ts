@@ -2,6 +2,8 @@ import { env } from "@/env";
 
 import { DataSource } from "typeorm";
 import { CreateTables1741115507542 } from "./migrations/1741115507542-CreateTables";
+import { User } from "@/entities/user.entity";
+import { Post } from "@/entities/post.entity";
 
 export const appDataSource = new DataSource({
   type: "postgres",
@@ -10,7 +12,7 @@ export const appDataSource = new DataSource({
   username: env.DATABASE_USER,
   password: env.DATABASE_PASSWORD,
   database: env.DATABASE_NAME,
-  entities: [],
+  entities: [User, Post],
   migrations: [CreateTables1741115507542],
   logging: env.NODE_ENV === "development",
 });
