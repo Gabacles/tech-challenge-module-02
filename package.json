@@ -29,6 +29,10 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
+    "@fastify/jwt": "9.0.4",
+    "@types/bcryptjs": "2.4.6",
+    "bcryptjs": "3.0.2",
+    "D": "1.0.0",
     "dotenv": "^16.4.7",
     "fastify": "^5.2.1",
     "pg": "^8.13.3",
