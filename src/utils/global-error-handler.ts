@@ -38,8 +38,6 @@ export function globalErrorHandler(
 
   const errorName = error.constructor.name;
 
-  console.log(errorName);
-
   const handler = errorHandlerMap[errorName];
 
   if (handler) return handler(error, request, reply);
