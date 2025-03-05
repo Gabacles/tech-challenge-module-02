@@ -19,9 +19,9 @@ export class User implements IUser {
   @Column({ type: "enum", enum: UserRole })
   roles: UserRole;
 
-  @Column({ name: "password_hash", type: "text" })
+  @Column({ name: "password_hash", type: "text", select: false })
   passwordHash: string;
 
-  @OneToMany(() => Post, (post) => post.authorId)
+  @OneToMany(() => Post, (post) => post.author_id)
   posts?: Post[];
 }
