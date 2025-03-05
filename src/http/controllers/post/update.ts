@@ -10,12 +10,17 @@ export async function updatePost(req: FastifyRequest, res: FastifyReply) {
   const registerBodySchema = z.object({
     title: z.string(),
     content: z.string(),
-    author_id: z.string(),
   });
+
+  const registerTokenSchema = z.object({
+    id: z.string(),
+  });
+
+  const { id: author_id } = registerTokenSchema.parse(req.user);
 
   const { id } = registerParamsSchema.parse(req.params);
 
-  const { title, content, author_id } = registerBodySchema.parse(req.body);
+  const { title, content } = registerBodySchema.parse(req.body);
 
   const updatePostUseCase = makeUpdatePostUseCase();
 
