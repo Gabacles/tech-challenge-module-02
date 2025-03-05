@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { ILike, Repository } from "typeorm";
 import { appDataSource } from "@/lib/typeorm/typeorm";
 import { IPost } from "@/entities/models/post.interface";
 import { Post } from "@/entities/post.entity";
@@ -22,9 +22,18 @@ export class PostRepository implements IPostRepository {
     });
   }
 
-  async findAllPosts(page: number, limit: number): Promise<IPost[]> {
-    return await this.postRepository.find({
+  async findAllPosts(
+    page: number,
+    limit: number,
+    search: string
+  ): Promise<IPost[]> {
+    const where = search.trim()
+      ? [{ title: ILike(`%${search}%`) }, { content: ILike(`%${search}%`) }]
+      : undefined;
+  
+    return this.postRepository.find({
       relations: ["author_id"],
+      where,
       skip: (page - 1) * limit,
       take: limit,
     });
