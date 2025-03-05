@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { IPost } from "./models/post.interface";
 import { User } from "./user.entity";
 
@@ -16,5 +16,6 @@ export class Post implements IPost {
   content: string;
 
   @ManyToOne(() => User, (user) => user.id, { onDelete: "CASCADE" })
-  authorId: string;
+  @JoinColumn({ name: "author_id" })
+  author_id: string;
 }

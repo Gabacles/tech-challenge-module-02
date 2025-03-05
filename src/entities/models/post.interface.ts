@@ -2,7 +2,7 @@ export interface IPost {
   id?: string;
   title: string;
   content: string;
-  authorId: string;
+  author_id: string;
   createdAt?: Date;
   updatedAt?: Date;
 }

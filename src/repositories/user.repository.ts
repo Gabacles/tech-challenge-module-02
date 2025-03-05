@@ -14,4 +14,25 @@ export class UserRepository implements IUserRepository {
   async createUser(user: IUser): Promise<IUser> {
     return await this.userRepository.save(user);
   }
+
+  async findUserById(id: string): Promise<IUser | null> {
+    return await this.userRepository.findOne({
+      relations: ["posts"],
+      where: { id },
+    });
+  }
+
+  async findAllUsers(page: number, limit: number): Promise<IUser[]> {
+    return await this.userRepository.find({
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+  }
+
+  async findUserByEmail(email: string): Promise<IUser | null> {
+    return await this.userRepository.findOne({
+      where: { email },
+      select: ["id", "name", "email", "roles", "passwordHash"],
+    });
+  }
 }
