@@ -1,4 +1,3 @@
-
 import { invalidCredentialsError } from "@/useCases/errors/invalid-credentials-error";
 import { makeSigninUseCase } from "@/useCases/factory/make-signin-use-case";
 import { compare } from "bcryptjs";
@@ -23,7 +22,7 @@ export async function signin(request: FastifyRequest, reply: FastifyReply) {
     throw new invalidCredentialsError();
   }
 
-  const token = await reply.jwtSign({ email });
+  const token = await reply.jwtSign({ email, id: user.id, roles: user.roles });
 
   return reply.status(200).send({ token });
 }
