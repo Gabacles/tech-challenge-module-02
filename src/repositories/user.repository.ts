@@ -28,4 +28,11 @@ export class UserRepository implements IUserRepository {
       take: limit,
     });
   }
+
+  async findUserByEmail(email: string): Promise<IUser | null> {
+    return await this.userRepository.findOne({
+      where: { email },
+      select: ["id", "name", "email", "roles", "passwordHash"],
+    });
+  }
 }
